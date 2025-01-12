@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { Calendar, Check, Map as MapIcon } from "lucide-react";
+import { Calendar, Check } from "lucide-react";
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
   Polyline,
-  Tooltip,
 } from "react-leaflet";
 import L from "leaflet";
 
@@ -561,7 +560,7 @@ const TripPlanner = () => {
       const selectedLocations = Object.entries(selections)
         .filter(([key]) => key.startsWith(`${activeDay}-`))
         .map(([key, optionId]) => {
-          const [_, timeSlotIndex] = key.split("-");
+          const [timeSlotIndex] = key.split("-");
           const slot = days[activeDay - 1].schedule[parseInt(timeSlotIndex)];
           const option = slot.options.find((opt) => opt.id === optionId);
           return {
